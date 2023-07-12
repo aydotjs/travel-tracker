@@ -22,13 +22,25 @@ function Logo() {
   return <h1>🌴Far Away💼</h1>;
 }
 function Form() {
-  return <div className="add-form">What do you need for your trip</div>;
+  return (
+    <form className="add-form">
+      <h3>What do you need for your trip</h3>
+      <select>
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+          <option value={num} key={num}>{num}</option>
+        ))}
+      </select>
+      <button>Add</button>
+    </form>
+  );
 }
 function PackingList() {
   return (
     <div className="list">
-      <ul >
-        {initialItems.map((item) => <Item item = {item}/>)}
+      <ul>
+        {initialItems.map((item) => (
+          <Item item={item} key={item.id} />
+        ))}
       </ul>
     </div>
   );
@@ -42,9 +54,13 @@ function Stat() {
   );
 }
 
-function Item({item}){
-return(<li>
-  <span style={item.packed ? {textDecoration : "line-through"} : {}}>{item.quantity} {item.description} </span>
-  <button>❎</button>
-</li>)
+function Item({ item }) {
+  return (
+    <li>
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
+        {item.quantity} {item.description}{" "}
+      </span>
+      <button>❎</button>
+    </li>
+  );
 }
